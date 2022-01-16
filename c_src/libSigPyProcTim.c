@@ -246,11 +246,12 @@ void resample(float* input,
 	      float* output,
 	      int nsamps,
 	      float accel,
+        float jerk,
 	      float tsamp)
 {
   int index,ii;
   int nsamps_by_2 = nsamps/2;
-  float partial_calc = (accel*tsamp) / (2 * 299792458.0);
+  float partial_calc = (accel*tsamp) / (2 * 299792458.0) - (jerk*tsamp*tsamp*nsamps_by_2) / (6 * 299792458.0);
   float tot_drift = partial_calc * pow(nsamps_by_2,2);
   int last_bin = 0;
   for (ii=0;ii<nsamps;ii++){

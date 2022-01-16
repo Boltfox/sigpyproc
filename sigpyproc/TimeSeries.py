@@ -234,6 +234,7 @@ class TimeSeries(np.ndarray):
                      as_c(out_ar),
                      C.c_int(new_size),
                      C.c_float(accel),
+                     C.c_float(jerk),
                      C.c_float(self.header.tsamp))
 
         new_header = self.header.newHeader({"nsamples":out_ar.size,
